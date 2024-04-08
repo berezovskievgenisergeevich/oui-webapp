@@ -42,6 +42,12 @@ public class LoginPage {
         return this;
     }
 
+    @Step("click to Anderen Store suchen button")
+    public LoginPage clickToFindAnotherStore() {
+        $(byText("Anderen Store suchen")).click();
+        return this;
+    }
+
     @Step("click to Store suchen button")
     public LoginPage clickSearchStore() {
         $(byText("Store suchen")).click();
