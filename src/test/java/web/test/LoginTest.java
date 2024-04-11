@@ -9,6 +9,7 @@ import web.pages.LoginPage;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static web.data.TestData.*;
 
 public class LoginTest extends BaseTest {
 
@@ -17,8 +18,8 @@ public class LoginTest extends BaseTest {
     @DisplayName("Login to App with Email and Password")
     void successLoginWithEmailAndPassTest() {
         new LoginPage()
-                .setLogin("max.mustermann@storemind.de")
-                .setPass("MMStore*Mind")
+                .setEmail(testData.MAIL)
+                .setPass(testData.PASS)
                 .clickEnter();
         $("body").shouldHave(text("Geben Sie bitte die Store ID ein."));
 
@@ -29,10 +30,10 @@ public class LoginTest extends BaseTest {
     @DisplayName("Login to Store")
     void successLoginToStoreTest() {
         new LoginPage()
-                .setLogin("max.mustermann@storemind.de")
-                .setPass("MMStore*Mind")
+                .setEmail(testData.MAIL)
+                .setPass(testData.PASS)
                 .clickEnter()
-                .setStoreId("0256")
+                .setStoreId(testData.STORE_ID)
                 .clickSearchStore()
                 .clickEnterToStore();
         $("body").shouldHave(text("Cockpit"));
@@ -44,10 +45,10 @@ public class LoginTest extends BaseTest {
     @DisplayName("Check Find another store button")
     void changeAnotherStoreTest() {
         new LoginPage()
-                .setLogin("max.mustermann@storemind.de")
-                .setPass("MMStore*Mind")
+                .setEmail(testData.MAIL)
+                .setPass(testData.PASS)
                 .clickEnter()
-                .setStoreId("0256")
+                .setStoreId(testData.STORE_ID)
                 .clickSearchStore()
                 .clickToFindAnotherStore();
         $("body").shouldHave(text("Geben Sie bitte die Store ID ein."));
@@ -59,8 +60,8 @@ public class LoginTest extends BaseTest {
     @DisplayName("Login to App with wrong Email and Pass")
     void loginToStoreWithWrongEmailAndPassTest() {
         new LoginPage()
-                .setLogin("test")
-                .setPass("test")
+                .setEmail(testData.RANDOM_EMAIL)
+                .setPass(testData.RANDOM_PASS)
                 .clickEnter();
         $("[aria-invalid='true']").shouldBe(visible);
 
@@ -71,10 +72,10 @@ public class LoginTest extends BaseTest {
     @DisplayName("Login with wrong Store Id")
     void wrongStoreIdTest() {
         new LoginPage()
-                .setLogin("max.mustermann@storemind.de")
-                .setPass("MMStore*Mind")
+                .setEmail(testData.MAIL)
+                .setPass(testData.PASS)
                 .clickEnter()
-                .setStoreId("test")
+                .setStoreId(INVALID_STORE_ID)
                 .clickSearchStore();
 
         $("[aria-invalid='true']").shouldBe(visible);

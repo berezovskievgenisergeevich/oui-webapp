@@ -12,9 +12,9 @@ public class LoginPage {
         open("/");
     }
 
-    @Step("Enter login: {login}")
-    public LoginPage setLogin(String login) {
-        $("[name='email']").val(login);
+    @Step("Enter email: {email}")
+    public LoginPage setEmail(String email) {
+        $("[name='email']").val(email);
         return this;
     }
 
