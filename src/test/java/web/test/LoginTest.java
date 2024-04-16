@@ -1,33 +1,35 @@
 package web.test;
 
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
+import web.data.model.Store;
 import web.pages.LoginPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static web.data.TestData.*;
+import static web.data.TestData.INVALID_STORE_ID;
 
+@Story("Login Page - UI automation")
 public class LoginTest extends BaseTest {
 
     @Test
     @Tags({@Tag("login"), @Tag("regression"), @Tag("ui")})
-    @DisplayName("Login to App with Email and Password")
+    @DisplayName("First step authentification with Email and Password")
     void successLoginWithEmailAndPassTest() {
         new LoginPage()
                 .setEmail(testData.MAIL)
                 .setPass(testData.PASS)
                 .clickEnter();
         $("body").shouldHave(text("Geben Sie bitte die Store ID ein."));
-
     }
 
     @Test
     @Tags({@Tag("login"), @Tag("smoke"), @Tag("regression"), @Tag("ui")})
-    @DisplayName("Login to Store")
+    @DisplayName("Login to App with Email, Pass and StoreId")
     void successLoginToStoreTest() {
         new LoginPage()
                 .setEmail(testData.MAIL)
@@ -37,13 +39,12 @@ public class LoginTest extends BaseTest {
                 .clickSearchStore()
                 .clickEnterToStore();
         $("body").shouldHave(text("Cockpit"));
-
     }
 
     @Test
     @Tags({@Tag("login"), @Tag("smoke"), @Tag("regression"), @Tag("ui")})
-    @DisplayName("Check Find another store button")
-    void changeAnotherStoreTest() {
+    @DisplayName("Check 'Select another store' button")
+    void changeAnotherStoreButtonTest() {
         new LoginPage()
                 .setEmail(testData.MAIL)
                 .setPass(testData.PASS)
@@ -52,7 +53,25 @@ public class LoginTest extends BaseTest {
                 .clickSearchStore()
                 .clickToFindAnotherStore();
         $("body").shouldHave(text("Geben Sie bitte die Store ID ein."));
+    }
 
+    @Test
+    @Tags({@Tag("login"), @Tag("smoke"), @Tag("regression"), @Tag("ui")})
+    @DisplayName("Check 'Select another store' function")
+    void selectAnotherStoreTest() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.setEmail(testData.MAIL)
+                .setPass(testData.PASS)
+                .clickEnter();
+        for (Store store : testData.stores) {
+            loginPage.setStoreId(store.getId());
+            loginPage.clickSearchStore();
+
+            $("body").shouldHave(text(store.getName()));
+            loginPage.clickToFindAnotherStore();
+        }
+
+        $("body").shouldHave(text("Geben Sie bitte die Store ID ein."));
     }
 
     @Test
@@ -64,12 +83,33 @@ public class LoginTest extends BaseTest {
                 .setPass(testData.RANDOM_PASS)
                 .clickEnter();
         $("[aria-invalid='true']").shouldBe(visible);
+    }
 
+    @Test
+    @Tags({@Tag("login"), @Tag("regression"), @Tag("ui")})
+    @DisplayName("Login to App with wrong Email")
+    void loginToStoreWithWrongEmailTest() {
+        new LoginPage()
+                .setEmail(testData.RANDOM_EMAIL)
+                .setPass(testData.PASS)
+                .clickEnter();
+        $("[aria-invalid='true']").shouldBe(visible);
+    }
+
+    @Test
+    @Tags({@Tag("login"), @Tag("regression"), @Tag("ui")})
+    @DisplayName("Login to App with wrong Pass")
+    void loginToStoreWithWrongPassTest() {
+        new LoginPage()
+                .setEmail(testData.MAIL)
+                .setPass(testData.RANDOM_PASS)
+                .clickEnter();
+        $("[aria-invalid='true']").shouldBe(visible);
     }
 
     @Test
     @Tags({@Tag("login"), @Tag("smoke"), @Tag("regression"), @Tag("ui")})
-    @DisplayName("Login with wrong Store Id")
+    @DisplayName("Login to App with wrong Store Id")
     void wrongStoreIdTest() {
         new LoginPage()
                 .setEmail(testData.MAIL)
@@ -80,8 +120,5 @@ public class LoginTest extends BaseTest {
 
         $("[aria-invalid='true']").shouldBe(visible);
         $("body").shouldHave(text("Store ID fehlt"));
-
     }
-
-
 }

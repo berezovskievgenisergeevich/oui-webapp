@@ -2,7 +2,9 @@ package web.data;
 
 import com.github.javafaker.Faker;
 import config.TestsConfig;
+import helpers.StoreProvider;
 import org.aeonbits.owner.ConfigFactory;
+import web.data.model.Store;
 
 import java.util.Locale;
 
@@ -15,4 +17,5 @@ public class TestData {
     public final String RANDOM_EMAIL = faker.internet().emailAddress();
     public final String RANDOM_PASS = faker.internet().password();
     public static final String INVALID_STORE_ID = "INVALID_STORE_ID";
+    public Store[] stores = StoreProvider.stores;
 }

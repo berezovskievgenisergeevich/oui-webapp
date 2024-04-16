@@ -1,15 +1,18 @@
 package web.pages;
 
+import com.codeborne.selenide.Configuration;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.Allure.step;
 
 public class LoginPage {
 
     public LoginPage() {
-        open("/");
+        step("Open page: " + Configuration.baseUrl,
+                () -> open("/"));
     }
 
     @Step("Enter email: {email}")

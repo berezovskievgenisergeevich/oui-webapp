@@ -10,6 +10,7 @@ import web.data.TestData;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class BaseTest {
+
     public TestData testData = new TestData();
 
     @BeforeAll
@@ -25,6 +26,4 @@ public class BaseTest {
     public void afterEach() {
         closeWebDriver();
     }
-
-
 }
