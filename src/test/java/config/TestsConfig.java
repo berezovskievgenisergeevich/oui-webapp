@@ -27,4 +27,10 @@ public interface TestsConfig extends Config {
 
     @Key("app.store_id")
     String storeId();
+
+    @Key("api.url")
+    String apiUrl();
+
+    @Key("api.project.name")
+    String apiProjectName();
 }

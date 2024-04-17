@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static web.data.TestData.INVALID_STORE_ID;
 
-@Story("Login Page - UI automation")
+@Story("[UI] Login Page Automation")
 public class LoginTest extends BaseTest {
 
     @Test
