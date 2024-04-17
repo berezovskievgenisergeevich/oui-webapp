@@ -36,4 +36,7 @@ public interface TestsConfig extends Config {
 
     @Key("remote")
     Boolean isRemote();
+
+    @Key("remote.url")
+    String getRemoteUrl();
 }

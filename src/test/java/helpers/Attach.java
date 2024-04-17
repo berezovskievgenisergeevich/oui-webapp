@@ -1,7 +1,6 @@
 package helpers;
 
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -30,12 +29,6 @@ public class Attach {
         return message;
     }
 
-    @Attachment(value = "{fileName}", type = "text/html")
-    public static byte[] attachHtml(String fileName) {
-        return WebDriverRunner.source()
-                .getBytes(StandardCharsets.UTF_8);
-    }
-
     public static void browserConsoleLogs() {
         attachAsText(
                 "Browser console logs",
@@ -44,17 +37,18 @@ public class Attach {
     }
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
-    public static String addVideo() {
+    public static String addVideo(String url) {
         return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                + getVideoUrl()
+                + getVideoUrl(url)
                 + "' type='video/mp4'></video></body></html>";
     }
 
     /**
-     * Видео записывается на стороне селиноида, поэтому его ен будет при локальном запуске
+     * The video is recorded on the solenoid side,
+     * so it will not be available when running locally
      */
-    public static URL getVideoUrl() {
-        String videoUrl = "http://localhost:4444/video/" + sessionId() + ".mp4";
+    public static URL getVideoUrl(String url) {
+        String videoUrl = url + "/video/" + sessionId() + ".mp4";
         try {
             return new URL(videoUrl);
         } catch (MalformedURLException e) {
