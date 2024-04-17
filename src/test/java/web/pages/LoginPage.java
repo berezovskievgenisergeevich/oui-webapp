@@ -40,9 +40,9 @@ public class LoginPage {
     }
 
     @Step("click to Store annehmen button")
-    public LoginPage clickEnterToStore() {
+    public CockpitPage clickEnterToStore() {
         $(byText("Store annehmen")).click();
-        return this;
+        return new CockpitPage();
     }
 
     @Step("click to Anderen Store suchen button")
