@@ -8,14 +8,16 @@ import org.junit.jupiter.api.BeforeAll;
 import web.data.TestData;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static helpers.Attach.*;
 
 public class BaseTest {
 
     public TestData testData = new TestData();
+    static TestsConfig config;
 
     @BeforeAll
     static void setUp() {
-        TestsConfig config = ConfigFactory.create(TestsConfig.class, System.getProperties());
+        config = ConfigFactory.create(TestsConfig.class, System.getProperties());
 
         Configuration.baseUrl = config.baseUrl();
         Configuration.browserSize = config.browserSize();
@@ -24,6 +26,14 @@ public class BaseTest {
 
     @AfterEach
     public void afterEach() {
+        screenshotAs("Last screenshot");
+        pageSource();
+        browserConsoleLogs();
+        attachHtml("HTML");
+
+        if (config.isRemote()) {
+            addVideo();
+        }
         closeWebDriver();
     }
 }

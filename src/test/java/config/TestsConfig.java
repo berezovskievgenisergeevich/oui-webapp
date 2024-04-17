@@ -33,4 +33,7 @@ public interface TestsConfig extends Config {
 
     @Key("api.project.name")
     String apiProjectName();
+
+    @Key("remote")
+    Boolean isRemote();
 }
