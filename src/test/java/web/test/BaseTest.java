@@ -40,11 +40,6 @@ public class BaseTest {
         }
     }
 
-    /*@BeforeEach
-    void addListener() {
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-    }*/
-
     @AfterEach
     public void afterEach() {
         screenshotAs("Last screenshot");
