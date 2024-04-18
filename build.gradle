@@ -65,3 +65,21 @@ tasks.withType(Test) {
 task generateAllureReport(type: Exec) {
     commandLine "allure", "generate build/allure-results"
 }
+
+task cockpit_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("cockpit")
+    }
+}
+
+task login_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("login")
+    }
+}
+
+task api_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("api")
+    }
+}

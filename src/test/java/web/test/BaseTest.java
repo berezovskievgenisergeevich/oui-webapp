@@ -44,11 +44,10 @@ public class BaseTest {
     public void afterEach() {
         screenshotAs("Last screenshot");
         pageSource();
-        browserConsoleLogs();
-
-        if (config.isRemote()) {
-            addVideo(config.getRemoteUrl());
-        }
+        browserConsoleLogs(config);
+        addVideo(config);
         closeWebDriver();
     }
+
+
 }

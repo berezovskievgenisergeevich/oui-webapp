@@ -3,10 +3,7 @@ package api.test;
 import api.data.ApiTestData;
 import api.model.LoginRequestModel;
 import io.qameta.allure.Story;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Tags;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.Map;
 
@@ -21,6 +18,7 @@ public class LoginTests {
     ApiTestData apiData = new ApiTestData();
 
     @Test
+    @Disabled("As a demonstration of the demo functionality")
     @Tags({@Tag("login"), @Tag("api")})
     @DisplayName("check 'v1/account' function with cookies from 'v1/account/sessions/email'")
     void executeAccountFunctionWithCookiesTest() {

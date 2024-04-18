@@ -1,6 +1,7 @@
 package helpers;
 
 import com.codeborne.selenide.Selenide;
+import config.TestsConfig;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -29,18 +30,24 @@ public class Attach {
         return message;
     }
 
-    public static void browserConsoleLogs() {
-        attachAsText(
-                "Browser console logs",
-                String.join("\n", Selenide.getWebDriverLogs(BROWSER))
-        );
+    /**
+     * Firefox does not support the function get logs from the console
+     */
+    public static void browserConsoleLogs(TestsConfig config) {
+        if (!config.browser().equalsIgnoreCase("firefox"))
+            attachAsText(
+                    "Browser console logs",
+                    String.join("\n", Selenide.getWebDriverLogs(BROWSER))
+            );
     }
 
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
-    public static String addVideo(String url) {
-        return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                + getVideoUrl(url)
-                + "' type='video/mp4'></video></body></html>";
+    public static String addVideo(TestsConfig config) {
+        if (config.isRemote())
+            return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
+                    + getVideoUrl(config.getRemoteUrl())
+                    + "' type='video/mp4'></video></body></html>";
+        return "<html><body>Video not supported</body></html>";
     }
 
     /**

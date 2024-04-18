@@ -24,6 +24,7 @@ public class CockpitTest extends BaseTest {
     }
 
     @Test
+    @Disabled("As a demonstration of the demo functionality")
     @Tags({@Tag("cockpit"), @Tag("ui")})
     @DisplayName("Checking the existence of 'Kunden anlegen' module")
     void checkCreateNewCustomerModuleIsExists() {

@@ -1,10 +1,7 @@
 package web.test;
 
 import io.qameta.allure.Story;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Tags;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import web.data.model.Store;
 import web.pages.LoginPage;
 
@@ -56,6 +53,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
+    @Disabled("As a demonstration of the demo functionality")
     @Tags({@Tag("login"), @Tag("smoke"), @Tag("regression"), @Tag("ui")})
     @DisplayName("Check 'Select another store' function")
     void selectAnotherStoreTest() {
@@ -86,6 +84,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
+    @Disabled("As a demonstration of the demo functionality")
     @Tags({@Tag("login"), @Tag("regression"), @Tag("ui")})
     @DisplayName("Login to App with wrong Email")
     void loginToStoreWithWrongEmailTest() {
@@ -108,6 +107,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
+    @Disabled("As a demonstration of the demo functionality")
     @Tags({@Tag("login"), @Tag("smoke"), @Tag("regression"), @Tag("ui")})
     @DisplayName("Login to App with wrong Store Id")
     void wrongStoreIdTest() {
