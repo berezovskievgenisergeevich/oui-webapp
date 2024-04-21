@@ -28,7 +28,7 @@ public class BaseTest {
         Configuration.browser = config.browser();
 
         if (config.isRemote()) {
-            Configuration.browserVersion = config.browserVersion();
+            //Configuration.browserVersion = config.browserVersion();
             Configuration.remote = config.getRemoteUrl() + "/wd/hub";
 
             Map<String, Object> map = new HashMap<>();
