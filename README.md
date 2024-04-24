@@ -25,7 +25,7 @@ state "The build in Jenkins is complete successfully" as C
 state "The build in Jenkins is complete failed" as C_1
 state "Launching the Allure Report" as D
 state "Sending a report to Slack" as D_1
-state "Analysis of test results, creation ticket in Jira" as E
+state "Analysis of test results / creatE ticket in Jira" as E
 state "Management" as M
 [*] --> A_0
 · --> M
@@ -38,7 +38,7 @@ C --> D
 C_1 --> D
 C_1 --> D_1
 D_1 --> E
-E --> A
+E --> A_0
 ```
 
 The test project consists of web tests (UI), API tests.\
