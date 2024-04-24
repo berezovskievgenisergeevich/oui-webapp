@@ -117,8 +117,8 @@ Additional parameters:
 Combination:
 ```mermaid
 graph LR
-A[tag] --> B[API]
-A --> C[Web]
+A[-Dremote] --> B[Local]
+A --> C[Remote]
 B --> K[api]
 C --> E[browser_selenoid]
 C --> F[browser_local]
