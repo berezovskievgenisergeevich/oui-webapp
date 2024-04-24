@@ -25,7 +25,7 @@ state "The build in Jenkins is complete successfully" as C
 state "The build in Jenkins is complete failed" as C_1
 state "Launching the Allure Report" as D
 state "Sending a report to Slack" as D_1
-state "Analysis of test results / creatE ticket in Jira" as E
+state "Analysis of test results / create ticket in Jira" as E
 state "Management" as M
 [*] --> A_0
 · --> M
