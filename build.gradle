@@ -66,20 +66,11 @@ task generateAllureReport(type: Exec) {
     commandLine "allure", "generate build/allure-results"
 }
 
-task cockpit_test(type: Test) {
+test {
+    systemProperties(System.getProperties())
     useJUnitPlatform {
-        includeTags("cockpit")
-    }
-}
-
-task login_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("login")
-    }
-}
-
-task api_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("api")
+        if (System.getProperty("tag") != null && !System.getProperty("tag").isEmpty()) {
+            includeTags System.getProperty("tag")
+        }
     }
 }

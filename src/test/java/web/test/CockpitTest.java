@@ -46,6 +46,6 @@ public class CockpitTest extends BaseTest {
     void checkCatalogModuleIsExists() {
         new CockpitPage().clickToProductCatalog();
         $("h2").shouldHave(text("Produktkatalog"));
-     //   $("h2").shouldHave(text("Product Catalog"));
+        //   $("h2").shouldHave(text("Product Catalog"));
     }
 }
