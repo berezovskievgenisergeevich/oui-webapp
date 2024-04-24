@@ -25,10 +25,13 @@ state "The build in Jenkins is complete successfully" as C
 state "The build in Jenkins is complete failed" as C_1
 state "Launching the Allure Report" as D
 state "Sending a report to Slack" as D_1
-state "All completed test cases are automatically created/updated according to the code" as E
+state "Analysis of test results, creation ticket in Jira" as E
+state "Management" as M
 [*] --> A_0
+[*] --> M
 A_0 --> A
 A --> B
+M --> B
 B --> C
 B --> C_1
 C --> D
@@ -112,8 +115,7 @@ Additional parameters:
 >- *ui*
 >- *smoke*
 
-Допустимые комбинации:
-
+Combination:
 ```mermaid
 graph LR
 A[tag] --> B[API]
