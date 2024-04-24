@@ -28,6 +28,7 @@ state "Sending a report to Slack" as D_1
 state "Analysis of test results, creation ticket in Jira" as E
 state "Management" as M
 [*] --> A_0
+[**] --> M
 A_0 --> A
 A --> B
 M --> B
