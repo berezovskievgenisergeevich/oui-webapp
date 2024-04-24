@@ -38,8 +38,8 @@ C --> D
 C_1 --> D
 C_1 --> D_1
 D --> E
+D_1 --> E
 E --> A
-E --> A_0
 ```
 
 The test project consists of web tests (UI), API tests.\
