@@ -47,6 +47,7 @@ public class Attach {
             return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
                     + getVideoUrl(config.getRemoteUrl())
                     + "' type='video/mp4'></video></body></html>";
+
         return "<html><body>Video not supported</body></html>";
     }
 
