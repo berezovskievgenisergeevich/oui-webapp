@@ -117,11 +117,20 @@ Additional parameters:
 Combination:
 ```mermaid
 graph LR
-A[-Dremote] --> B[Local]
+A[-Dremote = true/false] --> B[Local]
 A --> C[Remote]
+C --> C_1[Selenoid+Docker]
+C --> C_2[Browserstack]
 B --> K[api]
-C --> E[browser_selenoid]
-C --> F[browser_local]
+B --> K_1[UI]
+K1 --> E[-Dtag=login/cockpit/ui/smoke]
+C_1 --> K_2[api]
+C_1 --> K_2[UI]
+K2 --> E_2[-Dtag=login/cockpit/ui/smoke]
+C2 --> K_3[api]
+C_2 --> K_3[UI]
+K3 --> E_3[-Dtag=login/cockpit/ui/smoke]
+
 ```
 
 [Go back to top ⬆](#Content)
