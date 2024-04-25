@@ -124,12 +124,12 @@ C --> C_2[Browserstack]
 B --> K[api]
 B --> K_1[UI]
 K1 --> E[-Dtag=login/cockpit/ui/smoke]
-C_1 --> K_2[api]
-C_1 --> K_2[UI]
-K2 --> E_2[-Dtag=login/cockpit/ui/smoke]
-C2 --> K_3[api]
+C_1 --> CK_1[api]
+C_1 --> CK_2[UI]
+CK_2 --> E_2[-Dtag=login/cockpit/ui/smoke]
+C_2 --> K_3[api]
 C_2 --> K_3[UI]
-K3 --> E_3[-Dtag=login/cockpit/ui/smoke]
+K_3 --> E_3[-Dtag=login/cockpit/ui/smoke]
 
 ```
 
